@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
 
-function App() {
+// import './App.css';
+import './todo.css';
+import './edit.css';
+
+import API from './api/request';
+import Header from './components/Header';
+// import Content from './components/HomeContent';
+import ContentRouter from './components/routers/ContentRouter';
+import AppTemplate from './components/AppTemplate';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppTemplate Header={<Header />} Content={<ContentRouter />} />
+    </>
   );
-}
+};
 
 export default App;
