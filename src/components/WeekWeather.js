@@ -1,7 +1,7 @@
 import React from 'react';
-import API from '../api/request';
+
 import styled from 'styled-components';
-// const WeekWeather = ({ dailyWeather }) => {
+
 const WeekWeather = ({ date, icon, temperature }) => {
   return (
     <StyledDiv>

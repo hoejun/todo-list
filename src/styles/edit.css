@@ -22,21 +22,14 @@
   
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
-    margin-bottom: 0.5rem; }
-  
-  
+    margin-bottom: 0.5rem; }  
   h3, .h3 {
     font-size: 1.75rem; }
   
   .row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px; }
-  
+
   .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
   .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
   .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
@@ -49,16 +42,17 @@
     padding-left: 15px; }
      
   @media (min-width: 768px) {
-    .col-md-6 {
+    /* .col-md-6 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
       flex: 0 0 50%;
-      max-width: 50%; }
-    .col-md-7 {
+      max-width: 50%; } */
+    /* .col-md-7 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 58.33333%;
       flex: 0 0 58.33333%;
-      max-width: 58.33333%; }
+      max-width: 58.33333%; } */
+      
     .col-md-8 {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 66.66667%;
@@ -86,6 +80,7 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out; }
    
   .form-group {
+      /* width: 100%; */
     margin-bottom: 1rem; }
   
   .mr-4,
@@ -114,14 +109,6 @@
   
   .p-4 {
     padding: 1.5rem !important; }
-  
-  .pt-4,
-  .py-4 {
-    padding-top: 1.5rem !important; }
-  
-  .pr-4,
-  .px-4 {
-    padding-right: 1.5rem !important; }
 
   body {
     font-family: "Poppins", Arial, sans-serif;
@@ -163,13 +150,17 @@
       border-color: #2553b8 !important; }
   
   textarea.form-control {
-    height: inherit !important; }
-    
+      height: 250px;
+    /* height: inherit !important;  */
+    }
+
   .contact-wrap {
+      height: 580px;
     background: #e8edf0; }
   
   .btn {
     padding: 12px 16px;
+    top: 20px;
     cursor: pointer;
     border-width: 1px;
     border-radius: 5px;
@@ -194,9 +185,6 @@
   
   .contactForm .label {
     color: #000;
-    text-transform: uppercase;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600; }
   
-  .contactForm .form-control {
-    border: none; }

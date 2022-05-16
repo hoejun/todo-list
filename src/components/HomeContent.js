@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import API from '../api/request';
-import WeekWeather from './WeekWeather';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import { Link } from 'react-router-dom';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { listState } from '../store/atom';
+import WeatherContent from './WeatherContent';
+import TodoListItem from './TodoListItem';
 
 const UnixToTimeStamp = (timeStamp) => {
   const date = new Date(timeStamp * 1000);
@@ -14,13 +14,19 @@ const UnixToTimeStamp = (timeStamp) => {
   return day;
 };
 
+const dateComparison = (todoDate) => {
+  const todo = new Date(todoDate);
+  const date = new Date();
+  const changeDate = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}.`;
+  const now = new Date(changeDate);
+
+  return todo > now;
+};
+
 const HomeContent = ({ history }) => {
-  const [dailyWeather, setDailyWeather] = useState([]);
-  // const [content, setContent] = useState([]);
-  // const content = useRecoilValue(listState);
-  const [date, setDate] = useState();
   const [content, setContent] = useRecoilState(listState);
-  const [checked, setChecked] = useState(null);
+  const [dailyWeather, setDailyWeather] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     const data = await API.getWeather();
@@ -36,62 +42,36 @@ const HomeContent = ({ history }) => {
       array.push(items);
     });
     setDailyWeather(array);
+    setLoading(false);
   };
-
   const handleClick = (e) => {
     setContent(
       content.map((item) => (item.id === e.id ? { ...item, ['checked']: !e.checked } : item))
     );
-
-    // content.filter(item=>{
-    //   if (item.id === e.id) {
-    //     return !item.checked
-    //   }
-    // setContent({ ...content, [e.checked]: !e.checked });
-    // setChecked('line-through');
   };
-
-  const hadnleDelete = (id) => {
+  const handleDelete = (id) => {
     setContent(content.filter((item) => item.id !== id));
   };
-
   const handleEdit = (e) => {
-    // history.push('/edit');
     history.push({
       pathname: '/edit',
       state: e,
       detail: 'update',
     });
   };
-  const dateTest = (todoDate) => {
-    const todo = new Date(todoDate);
-    const now = new Date(date);
-    // console.log(todo > now);
-    return todo > now;
-  };
-  useEffect(() => {
-    console.log(content);
-    const d = new Date();
-    const WeekDay = ['일', '월', '화', '수', '목', '금', '토'];
 
-    // setDate(`${d.getMonth() + 1}/${d.getDate()}(${WeekDay[d.getDay()]})`);
-    setDate(`${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}.`);
+  useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    window.localStorage.setItem('todoList', JSON.stringify(content));
+    // console.log(window.localStorage.getItem('todoList'));
+  }, [content]);
 
   return (
     <div>
       <div className='weather_content'>
-        <h2>이번주 날씨</h2>
-        <div style={{ height: '120px', position: 'relative', overflow: 'hidden' }}>
-          <ScrollContainer>
-            <div style={{ display: 'flex' }}>
-              {dailyWeather.map((e) => (
-                <WeekWeather key={e.id} date={e.date} icon={e.icon} temperature={e.temperature} />
-              ))}
-            </div>
-          </ScrollContainer>
-        </div>
+        <WeatherContent dailyWeather={dailyWeather} loading={loading} />
       </div>
       <div className='to_do_content' style={{ marginTop: '30px' }}>
         <h2>이번주 To-Do</h2>
@@ -101,45 +81,16 @@ const HomeContent = ({ history }) => {
               <button style={{ width: '100%', height: '100%' }}>추가 버튼</button>
             </Link>
           </div>
-          {/* <!-- 목록 --> */}
           <div className='listBox_inner'>
-            {/* {console.log(content)} */}
-            {/* <div className='list'>
-              <input type='checkbox' className='listCheck' />
-              <label className='listLb' style={{ textDecoration: 'line-through' }}>
-                sdfsdf
-              </label>
-              <button className='delBtn'>x</button>
-            </div>
-            <div className='list'>
-              <label className='listLb'>
-                <input type='checkbox' className='listCheck' />
-                {content.name}
-              </label>
-              <button className='delBtn'>x</button>
-            </div> */}
-
             {content.map((e, index) => (
-              <div className='list' key={index}>
-                <input type='checkbox' className='listCheck' onClick={() => handleClick(e)} />
-                <label
-                  className='listLb'
-                  style={{
-                    textDecoration: e.checked ? 'line-through' : null,
-                    color: dateTest(e.date) ? null : 'red',
-                  }}
-                  onClick={() => {
-                    handleEdit(e);
-                  }}
-                >
-                  {e.name}
-                  <br />
-                  {e.date}
-                </label>
-                <button className='delBtn' onClick={() => hadnleDelete(e.id)}>
-                  x
-                </button>
-              </div>
+              <TodoListItem
+                key={index}
+                e={e}
+                dateComparison={dateComparison}
+                handleClick={handleClick}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
             ))}
           </div>
         </div>

@@ -7,7 +7,7 @@
 
 .inner {
     width: 600px;
-    height: 600px;
+    height: 750px;
     padding: 30px;
     margin: 80px auto;
     box-sizing: border-box;
@@ -103,11 +103,6 @@ header .header-icon {
     font-size: 20px;
     background-color:#EFEFEF
 }
-
-/* 스크롤바 숨기기 */
-.listBox_inner::-webkit-scrollbar { 
-    display: none;
-  }
 
 .list {
     width: 100%;
