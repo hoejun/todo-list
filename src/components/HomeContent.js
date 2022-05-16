@@ -18,6 +18,7 @@ const HomeContent = ({ history }) => {
   const [dailyWeather, setDailyWeather] = useState([]);
   // const [content, setContent] = useState([]);
   // const content = useRecoilValue(listState);
+  const [date, setDate] = useState();
   const [content, setContent] = useRecoilState(listState);
   const [checked, setChecked] = useState(null);
 
@@ -62,9 +63,19 @@ const HomeContent = ({ history }) => {
       detail: 'update',
     });
   };
-
+  const dateTest = (todoDate) => {
+    const todo = new Date(todoDate);
+    const now = new Date(date);
+    // console.log(todo > now);
+    return todo > now;
+  };
   useEffect(() => {
     console.log(content);
+    const d = new Date();
+    const WeekDay = ['일', '월', '화', '수', '목', '금', '토'];
+
+    // setDate(`${d.getMonth() + 1}/${d.getDate()}(${WeekDay[d.getDay()]})`);
+    setDate(`${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}.`);
     getData();
   }, []);
 
@@ -113,7 +124,10 @@ const HomeContent = ({ history }) => {
                 <input type='checkbox' className='listCheck' onClick={() => handleClick(e)} />
                 <label
                   className='listLb'
-                  style={{ textDecoration: e.checked ? 'line-through' : null, color: 'red' }}
+                  style={{
+                    textDecoration: e.checked ? 'line-through' : null,
+                    color: dateTest(e.date) ? null : 'red',
+                  }}
                   onClick={() => {
                     handleEdit(e);
                   }}
