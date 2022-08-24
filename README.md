@@ -1,5 +1,5 @@
--타입스크립트와 테스트 코드를 작성하지 못했습니다.
--AppTemplate는 Header와 Content 컴포넌트를 props 넘겨주는 역할을 합니다.
+-타입스크립트와 테스트 코드 X
+-AppTemplate는 Header와 Content 컴포넌트를 props 넘겨줌
 -Header는 경로에 따라 Title State를 업데이트 합니다.
 -Content는 HomeContent와 EditContent를 라우팅 합니다.
 -HomeContent에서 오픈 날씨 API로 받아온 데이터와 추가된 이번주 할 일 데이터를 props로 WeatherContent와 TodoListItem 컴포넌트로 넘겨줍니다. -날씨 정보는 데이터를 가져오는 동안에 loading 화면을 보여줍니다.
