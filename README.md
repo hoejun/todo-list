@@ -1,4 +1,5 @@
 -타입스크립트와 테스트 코드 X
+
 -AppTemplate는 Header와 Content 컴포넌트를 props 넘겨줌
 -Header는 경로에 따라 Title State를 업데이트 합니다.
 -Content는 HomeContent와 EditContent를 라우팅 합니다.
