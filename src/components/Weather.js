@@ -1,8 +1,8 @@
 import React from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import WeekWeather from './WeekWeather';
+import WeekItem from './WeekItem';
 
-const WeatherContent = ({ dailyWeather, loading }) => {
+const Weather = ({ dailyWeather, loading }) => {
   return (
     <>
       <h2>이번주 날씨</h2>
@@ -13,7 +13,7 @@ const WeatherContent = ({ dailyWeather, loading }) => {
           <ScrollContainer>
             <div style={{ display: 'flex' }}>
               {dailyWeather.map((e) => (
-                <WeekWeather key={e.id} date={e.date} icon={e.icon} temperature={e.temperature} />
+                <WeekItem key={e.id} date={e.date} icon={e.icon} temperature={e.temperature} />
               ))}
             </div>
           </ScrollContainer>
@@ -23,4 +23,4 @@ const WeatherContent = ({ dailyWeather, loading }) => {
   );
 };
 
-export default WeatherContent;
+export default Weather;

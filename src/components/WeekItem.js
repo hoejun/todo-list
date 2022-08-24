@@ -2,11 +2,15 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-const WeekWeather = ({ date, icon, temperature }) => {
+const WeekItem = ({ date, icon, temperature }) => {
   return (
     <StyledDiv>
       <h4>{date}</h4>
-      <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} style={{ marginTop: '-30px' }} />
+      <img
+        src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+        alt='날씨'
+        style={{ marginTop: '-30px' }}
+      />
       <div style={{ marginTop: '-30px' }}>{temperature}도</div>
     </StyledDiv>
   );
@@ -20,4 +24,4 @@ const StyledDiv = styled.div`
   font-weight: bold;
 `;
 
-export default WeekWeather;
+export default WeekItem;

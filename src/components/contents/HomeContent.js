@@ -3,7 +3,7 @@ import API from '../../api/request';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { listState } from '../../store/atom';
-import WeatherContent from '../WeatherContent';
+import Weather from '../Weather';
 import TodoListItem from '../TodoListItem';
 
 const UnixToTimeStamp = (timeStamp) => {
@@ -65,13 +65,12 @@ const HomeContent = ({ history }) => {
   }, []);
   useEffect(() => {
     window.localStorage.setItem('todoList', JSON.stringify(content));
-    // console.log(window.localStorage.getItem('todoList'));
   }, [content]);
 
   return (
     <div>
       <div className='weather_content'>
-        <WeatherContent dailyWeather={dailyWeather} loading={loading} />
+        <Weather dailyWeather={dailyWeather} loading={loading} />
       </div>
       <div className='to_do_content' style={{ marginTop: '30px' }}>
         <h2>이번주 To-Do</h2>
