@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomeContent from '../HomeContent';
-import EditContent from '../EditContent';
+import HomeContent from '../contents/HomeContent';
+import EditContent from '../contents/EditContent';
 
 const ContentRouter = () => {
   return (

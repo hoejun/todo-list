@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { listState } from '../store/atom';
+import { listState } from '../../store/atom';
 import { v4 as uuid } from 'uuid';
 import { useLocation } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
