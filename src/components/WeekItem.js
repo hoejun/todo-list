@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styled from 'styled-components';
 
 const WeekItem = ({ date, icon, temperature }) => {

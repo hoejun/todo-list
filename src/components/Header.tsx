@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const location = useLocation();
-  const [title, setTitle] = useState('');
+  const location = useLocation<string>();
+  const [title, setTitle] = useState<string>('');
 
   useEffect(() => {
     if (location.pathname === '/') {

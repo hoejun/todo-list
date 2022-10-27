@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import API from '../../api/request';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import API from '../../api/request';
 import { useRecoilState } from 'recoil';
 import { listState } from '../../store/atom';
 import Weather from '../Weather';
 import TodoListItem from '../TodoListItem';
-
+interface Data {
+  id: any;
+  date: string;
+  icon: any;
+  temperature: any;
+}
 const UnixToTimeStamp = (timeStamp) => {
   const date = new Date(timeStamp * 1000);
   const WeekDay = ['일', '월', '화', '수', '목', '금', '토'];
@@ -23,16 +28,16 @@ const dateComparison = (todoDate) => {
   return todo > now;
 };
 
-const HomeContent = ({ history }) => {
+const HomeContent = ({ history }: { history: string }) => {
   const [content, setContent] = useRecoilState(listState);
-  const [dailyWeather, setDailyWeather] = useState([]);
+  const [dailyWeather, setDailyWeather] = useState<Data[]>([]);
   const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     const data = await API.getWeather();
-    let array = [];
+    let array: Data[] = [];
 
-    data.data.daily.forEach((e) => {
+    data.data.daily.forEach((e: any) => {
       const items = {
         id: e.dt,
         date: UnixToTimeStamp(e.dt),

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import './styles/todo.css';
 import './styles/edit.css';
 import Header from './components/Header';
