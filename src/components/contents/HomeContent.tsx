@@ -34,11 +34,12 @@ const fetchWeather = async () => {
 
   return wather;
 };
+
 const HomeContent = ({ history }: { history: any }) => {
   const [content, setContent] = useRecoilState<any>(listState);
   const [dailyWeather, setDailyWeather] = useState<Data[]>([]);
-  const { isLoading, error, data }: any = useQuery(['weatherKey'], fetchWeather);
   //isLoading은 데이터가 없을경우만 true
+  const { isLoading, error, data }: any = useQuery(['weatherKey'], fetchWeather);
   // if (isLoading) return <div> 로딩중... </div>;
   // if (error) return <div> 에러: {error.message} </div>;
 
@@ -79,10 +80,15 @@ const HomeContent = ({ history }: { history: any }) => {
     window.localStorage.setItem('todoList', JSON.stringify(content));
   }, [content]);
 
+  // if (isLoading) return <div>loading</div>;
+  if (error) return <div> 에러: {error.message} </div>;
+
   return (
     <div>
       <div className='weather_content'>
-        <Weather dailyWeather={dailyWeather} loading={isLoading} />
+        <h2>이번주 날씨</h2>
+        {isLoading && <h2>날씨 불러오는 중.......</h2>}
+        <Weather dailyWeather={dailyWeather} />
       </div>
       <div className='to_do_content' style={{ marginTop: '30px' }}>
         <h2>이번주 To-Do</h2>
